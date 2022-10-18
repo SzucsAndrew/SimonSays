@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ISimonSaysService, SimonSaysService>();
 
 var app = builder.Build();
-app.MapGet("/", () => "-== Siamon says game ==-\n Endpoints:\n New game: /guess\n Guess the numbers: /guess/{number?}");
+app.MapGet("/", () => "-== Simon says game ==-\n Endpoints:\n New game: /guess\n Guess the numbers: /guess/{number}");
 
 app.MapGet("/guess/{number?}", (int? number) =>
 {
@@ -17,7 +17,7 @@ app.MapGet("/guess/{number?}", (int? number) =>
         {
             return NextNumber.HasValue
                    ? $"Great! The next number is {NextNumber}!"
-                   : $"Number {simonSaysService.CorrectGuesses}: corret!";
+                   : $"Number {simonSaysService.CorrectGuesses}: correct!";
         }
         else
         {

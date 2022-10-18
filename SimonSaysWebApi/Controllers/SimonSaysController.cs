@@ -5,11 +5,11 @@ namespace SimonSaysWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SimonSays : ControllerBase
+    public class SimonSaysController : ControllerBase
     {
         private ISimonSaysService _simonSaysService;
 
-        public SimonSays(ISimonSaysService simonSaysService)
+        public SimonSaysController(ISimonSaysService simonSaysService)
         {
             _simonSaysService = simonSaysService;
         }
@@ -24,7 +24,7 @@ namespace SimonSaysWebApi.Controllers
                 {
                     return NextNumber.HasValue
                            ? $"Great! The next number is {NextNumber}!"
-                           : $"Number {_simonSaysService.CorrectGuesses}: corret!";
+                           : $"Number {_simonSaysService.CorrectGuesses}: correct!";
                 }
                 else
                 {
