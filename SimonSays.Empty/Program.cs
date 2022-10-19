@@ -12,19 +12,19 @@ app.MapGet("/guess/{number?}", (int? number) =>
     var simonSaysService = app.Services.GetRequiredService<ISimonSaysService>();
     if (number.HasValue)
     {
-        var (Correct, NextNumber) = simonSaysService.Guess(number.Value);
-        if (Correct)
+        var (correct, nextNumber) = simonSaysService.Guess(number.Value);
+        if (correct)
         {
-            return NextNumber.HasValue
-                   ? $"Great! The next number is {NextNumber}!"
+            return nextNumber.HasValue
+                   ? $"Great! The next number is {nextNumber}!"
                    : $"Number {simonSaysService.CorrectGuesses}: correct!";
         }
         else
         {
             var correctGuesses = simonSaysService.CorrectGuesses;
             var count = simonSaysService.Numbers.Count();
-            var correctNumber = NextNumber.HasValue
-                                ? NextNumber
+            var correctNumber = nextNumber.HasValue
+                                ? nextNumber
                                 : simonSaysService.Numbers.ElementAt(correctGuesses);
 
             return $"Oh no! The correct number was {correctNumber}. You guessed {correctGuesses} out of {count} correctly.";
