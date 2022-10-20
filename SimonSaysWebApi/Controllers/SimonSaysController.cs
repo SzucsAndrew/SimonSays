@@ -7,7 +7,7 @@ namespace SimonSaysWebApi.Controllers
     [Route("[controller]")]
     public class SimonSaysController : ControllerBase
     {
-        private ISimonSaysService _simonSaysService;
+        private readonly ISimonSaysService _simonSaysService;
 
         public SimonSaysController(ISimonSaysService simonSaysService)
         {
